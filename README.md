@@ -16,20 +16,30 @@ This is a Craigslist scraper that you can use to get the jump on the best deals 
 >
 > pip install numpy
 
-3. launch the server
+3. Open config.ini and input your stmp server credentials.
+
+4. launch the server
 
 > python app.py
 
-4. open a new terminal window at the project root and head over to the client directory
+5. open a new terminal window at the project root and head over to the client directory
 
 > cd client
 
-5. make sure you have all the node dependencies installed
+6. make sure you have all the node dependencies installed
 
 > npm install
 
-6. start up the front-end server
+7. start up the front-end server
 
 > npm run serve
 
 At this point the you should be able to open your brower and direct it to http://localhost:8080/ and see the running web app.
+
+# Usage
+
+From there it should be pretty self explainatory. Feed the web app the intended recipients for the scraper, and then feed it a comma separated list of craigslist URLs to scrape. Make sure that you have sufficient filters on your CL search as to not spam yourself.
+
+# Thank you
+
+Thank you for using my scraper. Hope you can get a nice car with it!
