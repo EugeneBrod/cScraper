@@ -62,6 +62,7 @@ def start():
         resetThread()
         data.thread.start()
         response_object["success"] = "true"
+        print("good start")
     return jsonify(response_object)
 
 @app.route('/stop', methods = ["GET"])
@@ -69,6 +70,7 @@ def stop():
     data.STOP_EVENT.set()
     data.thread.join()
     response_object = {"success": "true"}
+    print("good stop")
     return jsonify(response_object)
 
 
