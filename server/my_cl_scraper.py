@@ -50,14 +50,18 @@ class Scraper(Thread):
 		msg = "Hi, this is a Craigslist Scraper program that will send you emails listing any new posts matching a search url. This is an initialization email, here are the current posts.\n\n"
 		self.Iterate(msg)
 		time.sleep(random.randint(60*self.timer[0],60*self.timer[1]))
-
+		endTime = time.time() + random.randint(60*self.timer[0],60*self.timer[1])
 
 		while not self.stop_event.is_set():
-			print("Here we go again! The time is " + str(datetime.datetime.now()) + "\n\n")
-			self.Iterate(msg)
-			time.sleep(random.randint(60*self.timer[0],60*self.timer[1]))
-			if self.interrupt_event.is_set():
-				self.interrupt_event.clear()
+			if time.time < endTime:
+				continue
+			else:
+				print("Here we go again! The time is " + str(datetime.datetime.now()) + "\n\n")
+				self.Iterate(msg)
+				endTime = time.time() + random.randint(60*self.timer[0],60*self.timer[1])
+				if self.interrupt_event.is_set():
+					self.interrupt_event.clear()
+			
 
 	def Get_Posts(self):
 		new_posts = {}
