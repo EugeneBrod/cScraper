@@ -1,7 +1,6 @@
-import json
+import sys
+import time
 
-dic = {}
-dic["recipient_emails"] = "eugenebrod@gmail.com"
-dic["urls"] = "https://sfbay.craigslist.org/search/cta?query=nissan+truck&purveyor-input=all&max_auto_year=2005"
-
-print(json.dumps(dic))
+for i in range(5):
+  time.sleep(.5)
+  print(i)

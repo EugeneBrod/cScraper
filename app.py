@@ -49,19 +49,19 @@ def setSettings():
     data.recipient_emails = post_data['recipient_emails']
     data.urls = post_data['urls']
     print(data.urls)
-    response_object = {"success": "true"}
+    response_object = {"success": True}
     return jsonify(response_object)
 
 @app.route('/start', methods = ["GET"])
 def start():
     response_object = {"success": ""}
     if data.thread.is_alive():
-        response_object["success"] = "false"
+        response_object["success"] = False
         print("thread in use")
     else:
         resetThread()
         data.thread.start()
-        response_object["success"] = "true"
+        response_object["success"] = True
         print("good start")
     return jsonify(response_object)
 
@@ -69,14 +69,14 @@ def start():
 def stop():
     if not data.thread.is_alive():
         response_object = {
-            "success": "false",
+            "success": False,
             "message": "Worker thread not in use."
         }
         print("thread not in use")
         return jsonify(response_object)
     data.STOP_EVENT.set()
     data.thread.join()
-    response_object = {"success": "true"}
+    response_object = {"success": True}
     print("good stop")
     return jsonify(response_object)
 
