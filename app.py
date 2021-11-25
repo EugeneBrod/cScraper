@@ -67,6 +67,13 @@ def start():
 
 @app.route('/stop', methods = ["GET"])
 def stop():
+    if not data.thread.is_alive():
+        response_object = {
+            "success": "false",
+            "message": "Worker thread not in use."
+        }
+        print("thread not in use")
+        return jsonify(response_object)
     data.STOP_EVENT.set()
     data.thread.join()
     response_object = {"success": "true"}
