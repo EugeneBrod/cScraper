@@ -70,7 +70,6 @@ class Scraper(Thread):
 			f = urlopen(link, context = self.gcontext)
 			soup = BeautifulSoup(f,"html.parser")
 			for listing in soup.find_all("li", {"class": "result-row"}):
-				print(listing)
 				pid = listing.attrs["data-pid"]
 				old_pid = pid
 				url = listing.find("a", {"class": "result-title"}).attrs["href"]
@@ -95,7 +94,6 @@ class Scraper(Thread):
 		new_posts = self.Get_Posts()
 		if new_posts:
 			msg = self.Construct_Message(msg, new_posts)
-			print("Found new posts, sending email: " + msg)
 			server = smtplib.SMTP(self.smtp_server)
 			server.starttls()
 			server.login(self.smtp_username, self.smtp_password)
